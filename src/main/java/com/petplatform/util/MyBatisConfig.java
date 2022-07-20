@@ -41,6 +41,6 @@ public class MyBatisConfig {
         return new SqlSessionTemplate(firstSqlSessionFactory);
     }
 
-}
+
 
 }
