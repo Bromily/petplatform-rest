@@ -16,7 +16,7 @@ public class MemberController {
     public MemberDto selectMember(){
         MemberDto member1 = memberService.selectMember("haksung");
 
-        System.out.println(member1);
+        System.out.println("hi");
 
         return member1;
     }
