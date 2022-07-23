@@ -1,7 +1,7 @@
 package com.petplatform.controller;
 
 import com.petplatform.dto.MemberDto;
-import com.petplatform.service.MemberService;
+import com.petplatform.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,15 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MemberController {
 
-    @Autowired private MemberService member;
+    @Autowired
+    public MemberMapper memberService;
 
     @GetMapping("/")
-    public String selectMember(){
-        MemberDto member1 = member.selectMember("haksung");
+    public MemberDto selectMember(){
+        MemberDto member1 = memberService.selectMember("haksung");
 
-        System.out.println(member1.getSex());
+        System.out.println(member1);
 
-        return member1.getName();
+        return member1;
     }
 
 }
