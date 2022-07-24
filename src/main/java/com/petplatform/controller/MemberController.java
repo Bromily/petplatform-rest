@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
 
     @Autowired  //mapper를 자동으로 연결? 정확한 정의 모름
-    public MemberMapper memberService;
+    public MemberMapper mapper;
 
     //@RequestParam을 써서 id,pw를 가져와서 비번 맞으면 가입 된 MemberDto객체 반환.
     //암호화
     @GetMapping("/login")   // get타입으로 매핑
     public MemberDto selectMember(){
         //매퍼에서 selectMember 함수를 실행시켜서 받아온 MemberDto를 member1 객체로 선언
-        MemberDto member1 = memberService.selectMember("ljjkyung");
+        MemberDto member1 = mapper.selectMember("ljjkyung");
 
         System.out.println("hi2");
 
@@ -27,7 +27,7 @@ public class MemberController {
     //암호화
     @GetMapping("/signup")
     public void saveUser() {
-        memberService.insertMember("cksdlr7446", "1234", "안찬익", "M");
+        mapper.insertMember("cksdlr7446", "1234", "안찬익", "M");
         System.out.println("정보 저장됨");
     }
 
