@@ -14,7 +14,7 @@ public class MemberController {
 
     @GetMapping("/")
     public MemberDto selectMember(){
-        MemberDto member1 = memberService.selectMember("haksung");
+        MemberDto member1 = memberService.selectMember("haksung59");
 
         System.out.println("hi2");
 
