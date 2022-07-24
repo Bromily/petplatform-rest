@@ -12,7 +12,7 @@ public class MemberController {
     @Autowired
     public MemberMapper memberService;
 
-    @GetMapping("/")
+    @GetMapping("/login")
     public MemberDto selectMember(){
         MemberDto member1 = memberService.selectMember("haksung59");
 
