@@ -1,6 +1,6 @@
 package com.petplatform.dto;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class MemberDto {
 
     private String id;
@@ -20,10 +21,4 @@ public class MemberDto {
         this.pw = pw;
     }
 
-    public MemberDto(String id, String pw, String name, String sex) {
-        this.id = id;
-        this.pw = pw;
-        this.name = name;
-        this.sex = sex;
-    }
 }

@@ -9,6 +9,6 @@ public interface MemberMapper {
 
     public MemberDto selectMember(String id);
 
-    public MemberDto insertMember(String id, String pw, String name, String sex);
+    public void insertMember(String id, String pw, String name, String sex);
 
 }
