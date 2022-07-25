@@ -5,6 +5,8 @@ import com.petplatform.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 @RestController
 public class MemberController {
 
@@ -13,10 +15,11 @@ public class MemberController {
 
     //@RequestParam을 써서 id,pw를 가져와서 비번 맞으면 가입 된 MemberDto객체 반환.
     //암호화
-    @GetMapping("/login")   // get타입으로 매핑
-    public MemberDto selectMember(){
+    @PostMapping("/login")   // get타입으로 매핑
+    public MemberDto selectMember(@RequestParam(value = "id")String id,
+                                  @RequestParam(value = "pw")String pw){
         //매퍼에서 selectMember 함수를 실행시켜서 받아온 MemberDto를 member1 객체로 선언
-        MemberDto member1 = mapper.selectMember("ljjkyung");
+        MemberDto member1 = mapper.selectMember(id, pw);
 
         System.out.println("hi2");
 
@@ -25,9 +28,9 @@ public class MemberController {
 
     //@RequestBody를 사용해서 객체를 받아와서 데이터베이스 insert(회원가입) 시키기
     //암호화
-    @GetMapping("/signup")
-    public void saveUser() {
-        mapper.insertMember("cksdlr7446", "1234", "안찬익", "M");
+    @PostMapping("/signup")
+    public void saveUser(@RequestBody String id, String pw, String name, String sex) {
+        mapper.insertMember(id, pw, name, sex);
         System.out.println("정보 저장됨");
     }
 
