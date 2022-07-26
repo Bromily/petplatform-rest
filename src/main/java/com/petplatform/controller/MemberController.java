@@ -29,8 +29,8 @@ public class MemberController {
     //@RequestBody를 사용해서 객체를 받아와서 데이터베이스 insert(회원가입) 시키기
     //암호화
     @PostMapping("/signup")
-    public void saveUser(@RequestBody String id, String pw, String name, String sex) {
-        mapper.insertMember(id, pw, name, sex);
+    public void saveUser(@RequestBody MemberDto info) {
+        mapper.insertMember(info);
         System.out.println("정보 저장됨");
     }
 

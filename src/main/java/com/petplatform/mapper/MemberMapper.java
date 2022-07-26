@@ -10,5 +10,5 @@ public interface MemberMapper {
 
     public MemberDto selectMember(String id, String pw);
 
-    public void insertMember(String id, String pw, String name, String sex);
+    public void insertMember(MemberDto info);
 }
