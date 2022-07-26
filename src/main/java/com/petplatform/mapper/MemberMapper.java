@@ -8,7 +8,7 @@ import java.util.HashMap;
 @Mapper
 public interface MemberMapper {
 
-    public MemberDto selectMember(String id, String pw);
+    MemberDto selectMember(MemberDto info);
 
-    public void insertMember(MemberDto info);
+    void insertMember(MemberDto info);
 }
