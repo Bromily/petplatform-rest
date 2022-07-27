@@ -4,9 +4,8 @@ import com.petplatform.dto.MemberDto;
 import com.petplatform.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.lang.reflect.Member;
-import java.util.HashMap;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @RestController
 public class MemberController {
@@ -14,14 +13,12 @@ public class MemberController {
     @Autowired  //mapper를 자동으로 연결? 정확한 정의 모름
     public MemberMapper mapper;
 
-    //@RequestParam을 써서 id,pw를 가져와서 비번 맞으면 가입 된 MemberDto객체 반환.
-    //암호화
     @PostMapping("/login")
-    public MemberDto selectMember(@RequestBody MemberDto info){
+    public MemberDto selectMember(@RequestBody MemberDto info) throws NoSuchAlgorithmException {
+        SHA256 sha256 = new SHA256();
         //매퍼에서 selectMember 함수를 실행시켜서 받아온 MemberDto를 member1 객체로 선언
         MemberDto member1 = mapper.selectMember(info);
-        System.out.println(info);
-                if(member1.getPw().equals(info.getPw())) {
+                if(member1.getPw().equals(sha256.encrypt(info.getPw()))) {
                     System.out.println("Hi~" + info.getId());
             return member1;
 
@@ -38,12 +35,31 @@ public class MemberController {
 //        return member1; // MemberDto객체 member1 반환
 //    }
 
-    //@RequestBody를 사용해서 객체를 받아와서 데이터베이스 insert(회원가입) 시키기
-    //암호화
     @PostMapping("/signup")
-    public void saveUser(@RequestBody MemberDto info) {
+    public void saveUser(@RequestBody MemberDto info) throws NoSuchAlgorithmException {
+        SHA256 sha256 = new SHA256();
+//        String changePw = info.getPw();
+        info.setPw(sha256.encrypt(info.getPw()));
         mapper.insertMember(info);
-        System.out.println("정보 저장됨");
+        System.out.println("Save data");
     }
 
+    // 암호화 클래스
+    public class SHA256 {
+
+        public String encrypt(String text) throws NoSuchAlgorithmException {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(text.getBytes());
+
+            return bytesToHex(md.digest());
+        }
+
+        private String bytesToHex(byte[] bytes) {
+            StringBuilder builder = new StringBuilder();
+            for (byte b : bytes) {
+                builder.append(String.format("%02x", b));
+            }
+            return builder.toString();
+        }
+    }
 }
