@@ -1,14 +1,18 @@
 package com.petplatform.mapper;
 
+import com.petplatform.controller.MemberController;
 import com.petplatform.dto.MemberDto;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @Mapper
 public interface MemberMapper {
 
-    public MemberDto selectMember(String id);
+    MemberDto selectMember(MemberDto info); // string id
 
-    public MemberDto insertMember(String id, String pw, String name, String sex);
-
+    void insertMember(MemberDto info);
 }
+
