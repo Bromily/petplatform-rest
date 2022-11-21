@@ -9,4 +9,6 @@ public interface CommonMapper {
     UserDto getUserInfo(String id);
     UserDto postUserInfo(UserDto userDto);
 
+    UserDto signIn(UserDto userDto);
+
 }
