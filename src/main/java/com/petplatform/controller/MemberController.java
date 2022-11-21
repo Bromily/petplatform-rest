@@ -1,6 +1,8 @@
 package com.petplatform.controller;
 
+import com.petplatform.common.SHA256;
 import com.petplatform.dto.MemberDto;
+import com.petplatform.dto.UserDto;
 import com.petplatform.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,30 +38,30 @@ public class MemberController {
 //    }
 
     @PostMapping("/signup")
-    public void saveUser(@RequestBody MemberDto info) throws NoSuchAlgorithmException {
+    public void saveUser(@RequestBody UserDto info) throws NoSuchAlgorithmException {
         SHA256 sha256 = new SHA256();
 //        String changePw = info.getPw();
-        info.setPw(sha256.encrypt(info.getPw()));
+        info.setPassword(sha256.encrypt(info.getPassword()));
         mapper.insertMember(info);
         System.out.println("Save data");
     }
 
-    // 암호화 클래스
-    public class SHA256 {
-
-        public String encrypt(String text) throws NoSuchAlgorithmException {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(text.getBytes());
-
-            return bytesToHex(md.digest());
-        }
-
-        private String bytesToHex(byte[] bytes) {
-            StringBuilder builder = new StringBuilder();
-            for (byte b : bytes) {
-                builder.append(String.format("%02x", b));
-            }
-            return builder.toString();
-        }
-    }
+//    // 암호화 클래스
+//    public class SHA256 {
+//
+//        public String encrypt(String text) throws NoSuchAlgorithmException {
+//            MessageDigest md = MessageDigest.getInstance("SHA-256");
+//            md.update(text.getBytes());
+//
+//            return bytesToHex(md.digest());
+//        }
+//
+//        private String bytesToHex(byte[] bytes) {
+//            StringBuilder builder = new StringBuilder();
+//            for (byte b : bytes) {
+//                builder.append(String.format("%02x", b));
+//            }
+//            return builder.toString();
+//        }
+//    }
 }
