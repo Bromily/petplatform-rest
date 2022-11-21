@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.petplatform.mapper.CommonMapper">
+
+    <select id="getUserInfo" resultType="com.petplatform.dto.UserDto" parameterType="String">
+        select
+            userid,
+            password,
+            name,
+            birth,
+            address,
+            phone_number as phoneNumber,
+            user_type as userType
+        from
+            user
+        where
+            userid=#{id}
+    </select>
+
+    <select id="postUserInfo" resultType="com.petplatform.dto.UserDto" parameterType="com.petplatform.dto.UserDto">
+        select
+            userid,
+            password,
+            name,
+            birth,
+            address,
+            phone_number as phoneNumber,
+            user_type as userType
+        from
+            user
+        where
+            userid=#{userId}
+    </select>
+
+</mapper>
