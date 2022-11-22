@@ -10,19 +10,25 @@ import lombok.Setter;
 @NoArgsConstructor
 public class MemberDto {
 
-    private String id;
-    private String pw;
+    private String userid;
+    private String password;
     private String name;
-    private String sex;
+    private String birth;
+    private String address;
+    private String phone_number;
+    private String user_type;
 
-    public MemberDto(String id, String pw) {
-        this.id = id;
-        this.pw = pw;
+    public MemberDto(String userid, String password) {
+        this.userid = userid;
+        this.password = password;
     }
-    public MemberDto(String id, String pw, String name, String sex) {
-        this.id = id;
-        this.pw = pw;
+    public MemberDto(String userid, String password, String name, String birth, String address, String phone_number, String user_type) {
+        this.userid = userid;
+        this.password = password;
         this.name = name;
-        this.sex = sex;
+        this.birth = birth;
+        this.address = address;
+        this.phone_number = phone_number;
+        this.user_type = user_type;
     }
 }

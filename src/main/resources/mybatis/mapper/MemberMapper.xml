@@ -3,10 +3,10 @@
 <mapper namespace="com.petplatform.mapper.MemberMapper">
 
     <select id="selectMember" resultType="com.petplatform.dto.MemberDto" parameterType="String">
-        select * from member where id=#{id}
+        select * from user where userid=#{userid}
     </select>
 
-    <insert id="insertMember" parameterType="com.petplatform.dto.UserDto">
-        insert user values (#{userId}, #{password}, #{name}, #{birth}, #{address}, #{phoneNumber}, #{userType})
+    <insert id="insertMember" parameterType="com.petplatform.dto.MemberDto">
+        insert user values (#{userid}, #{password}, #{name}, #{birth}, #{address}, #{phone_number}, #{user_type})
     </insert>
 </mapper>
