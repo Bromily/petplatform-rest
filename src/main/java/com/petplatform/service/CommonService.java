@@ -41,7 +41,7 @@ public class CommonService {
 
             return userInfo;
 
-        }else return getUserInfo("haksung59");
+        }else return null;
 
     }
 
