@@ -20,8 +20,8 @@ public class MemberController {
         SHA256 sha256 = new SHA256();
         //매퍼에서 selectMember 함수를 실행시켜서 받아온 MemberDto를 member1 객체로 선언
         MemberDto member1 = mapper.selectMember(info);
-                if(member1.getPw().equals(sha256.encrypt(info.getPw()))) {
-                    System.out.println("Hi~" + info.getId());
+                if(member1.getPassword().equals(sha256.encrypt(info.getPassword()))) {
+                    System.out.println("Hi~" + info.getUserid());
             return member1;
 
         }else return null; // MemberDto객체 member1 반환
@@ -38,7 +38,7 @@ public class MemberController {
 //    }
 
     @PostMapping("/signup")
-    public void saveUser(@RequestBody UserDto info) throws NoSuchAlgorithmException {
+    public void saveUser(@RequestBody MemberDto info) throws NoSuchAlgorithmException {
         SHA256 sha256 = new SHA256();
 //        String changePw = info.getPw();
         info.setPassword(sha256.encrypt(info.getPassword()));
