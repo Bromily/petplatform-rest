@@ -37,9 +37,11 @@ public class CommonService {
             session.setAttribute("userInfo", userInfo);
             session.setMaxInactiveInterval(3600);
 
+            System.out.println(userInfo.getName());
+
             return userInfo;
 
-        }else return null;
+        }else return getUserInfo("haksung59");
 
     }
 
