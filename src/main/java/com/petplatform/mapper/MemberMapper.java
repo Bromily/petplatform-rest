@@ -9,6 +9,6 @@ public interface MemberMapper {
 
     MemberDto selectMember(MemberDto info); // string id
 
-    void insertMember(MemberDto info);
+    void insertMember(UserDto info);
 }
 

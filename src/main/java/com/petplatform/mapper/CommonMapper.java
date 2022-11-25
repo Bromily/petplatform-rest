@@ -6,9 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CommonMapper {
 
-    UserDto getUserInfo(String id);
-    UserDto postUserInfo(UserDto userDto);
-
-    UserDto signIn(UserDto userDto);
+    UserDto getUserInfo(UserDto userDto);
 
 }

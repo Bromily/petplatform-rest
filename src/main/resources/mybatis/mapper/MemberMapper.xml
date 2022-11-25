@@ -6,7 +6,7 @@
         select * from user where userid=#{userid}
     </select>
 
-    <insert id="insertMember" parameterType="com.petplatform.dto.MemberDto">
-        insert user values (#{userid}, #{password}, #{name}, #{birth}, #{address}, #{phone_number}, #{user_type})
+    <insert id="insertMember" parameterType="com.petplatform.dto.UserDto">
+        insert user values (#{userId}, #{password}, #{name}, #{birth}, #{address}, #{email}, #{phoneNumber}, #{userType})
     </insert>
 </mapper>
