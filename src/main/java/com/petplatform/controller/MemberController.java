@@ -38,7 +38,7 @@ public class MemberController {
 //    }
 
     @PostMapping("/signup")
-    public void saveUser(@RequestBody MemberDto info) throws NoSuchAlgorithmException {
+    public void saveUser(@RequestBody UserDto info) throws NoSuchAlgorithmException {
         SHA256 sha256 = new SHA256();
 //        String changePw = info.getPw();
         info.setPassword(sha256.encrypt(info.getPassword()));
