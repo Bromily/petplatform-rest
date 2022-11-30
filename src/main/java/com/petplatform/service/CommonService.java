@@ -23,11 +23,14 @@ public class CommonService {
             UserDto userInfo = mapper.getUserInfo(userDto);
 
             if (userInfo.getPassword().equals(sha256.encrypt(userDto.getPassword()))) {
+                System.out.println("success");
                 return userInfo;
             } else {
+                System.out.println("fail");
                 return new UserDto();
             }
         }catch (Exception e){
+            System.out.println("fail");
             return new UserDto();
         }
 
