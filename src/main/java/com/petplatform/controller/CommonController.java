@@ -14,6 +14,6 @@ public class CommonController {
     public CommonService service;
 
     @PostMapping("/sign_in")
-    UserDto signIn(@RequestBody UserDto user) throws NoSuchAlgorithmException { return service.signIn(user); }
+    UserDto signIn(@RequestBody UserDto user) { return service.signIn(user); }
 
 }
