@@ -23,12 +23,12 @@ public class CommonService {
                 System.out.println("success");
                 return userInfo;
             } else {
-                System.out.println("fail");
-                return new UserDto();
+                System.out.println("fail : check password!");
+                return null;
             }
         }catch (Exception e){
             System.out.println("fail");
-            return new UserDto();
+            return null;
         }
 
     }
