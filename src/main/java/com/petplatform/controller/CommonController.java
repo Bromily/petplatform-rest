@@ -5,8 +5,6 @@ import com.petplatform.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.NoSuchAlgorithmException;
-
 @RestController
 public class CommonController {
 
@@ -15,5 +13,11 @@ public class CommonController {
 
     @PostMapping("/sign_in")
     UserDto signIn(@RequestBody UserDto user) { return service.signIn(user); }
+
+    @PostMapping("/sign_up")
+    String signUp(@RequestBody UserDto user) { return service.signUp(user); }
+
+    @GetMapping("/double_check")
+    int doubleCheck(@RequestParam("userId") String userId) { return service.doubleCheck(userId); }
 
 }
