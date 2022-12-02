@@ -33,4 +33,23 @@
             userid=#{userId}
     </select>
 
+    <insert id="signUp" parameterType="com.petplatform.dto.UserDto">
+        insert into
+            user
+                (userid, password, nick_name, name, birth,
+                 address, email, phone_number, user_type)
+        values
+            (#{userId}, #{password}, #{nickName}, #{name}, #{birth},
+             #{address}, #{email}, #{phoneNumber}, #{userType})
+    </insert>
+
+    <select id="doubleCheck" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select
+            count(*) as result
+        from
+            user
+        where
+            userid = #{userId}
+    </select>
+
 </mapper>

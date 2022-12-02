@@ -13,7 +13,6 @@ public class CommonService {
     public CommonMapper mapper;
 
     public UserDto signIn(UserDto userDto) {
-
         SHA256 sha256 = new SHA256();
 
         try {
@@ -31,6 +30,21 @@ public class CommonService {
             return null;
         }
 
+    }
+
+    public String signUp(UserDto userDto){
+        try {
+            SHA256 sha256 = new SHA256();
+            userDto.setPassword(sha256.encrypt(userDto.getPassword()));
+            mapper.signUp(userDto);
+            return "가입되었습니다. 로그인 후 이용해 주세요.";
+        }catch (Exception e){
+            return "다시 시도해 주세요.";
+        }
+    }
+
+    public int doubleCheck(String userId){
+        return mapper.doubleCheck(userId);
     }
 
 }

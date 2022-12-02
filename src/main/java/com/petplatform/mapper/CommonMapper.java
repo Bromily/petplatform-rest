@@ -8,4 +8,8 @@ public interface CommonMapper {
 
     UserDto getUserInfo(UserDto userDto);
 
+    void signUp(UserDto userDto);
+
+    int doubleCheck(String userId);
+
 }
