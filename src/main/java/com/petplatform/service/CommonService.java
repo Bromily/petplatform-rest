@@ -47,4 +47,34 @@ public class CommonService {
         return mapper.doubleCheck(userId);
     }
 
+    public String modifyUser(UserDto userDto){
+        try {
+            if(userDto.getPassword()!=null){
+                SHA256 sha256 = new SHA256();
+                userDto.setPassword(sha256.encrypt(userDto.getPassword()));
+
+                mapper.modifyPassword(userDto);
+            }else {
+                mapper.modifyUser(userDto);
+            }
+            return "success";
+
+        }catch(Exception e){
+            return "fail";
+        }
+
+    }
+
+    public String deleteUser(UserDto userDto){
+
+        try {
+            mapper.deleteUser(userDto);
+
+            return "success";
+        }catch (Exception e){
+            return "fail";
+        }
+
+    }
+
 }

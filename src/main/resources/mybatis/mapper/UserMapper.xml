@@ -11,26 +11,13 @@
             address,
             email,
             phone_number as phoneNumber,
-            user_type as userType
+            user_type as userType,
+            useyn
         from
             user
         where
-            userid=#{userId}
-    </select>
-
-    <select id="postUserInfo" resultType="com.petplatform.dto.UserDto" parameterType="com.petplatform.dto.UserDto">
-        select
-            userid,
-            password,
-            name,
-            birth,
-            address,
-            phone_number as phoneNumber,
-            user_type as userType
-        from
-            user
-        where
-            userid=#{userId}
+            userid=#{userId} and
+            useyn = 'y'
     </select>
 
     <insert id="signUp" parameterType="com.petplatform.dto.UserDto">
@@ -51,5 +38,37 @@
         where
             userid = #{userId}
     </select>
+
+    <update id="modifyPassword" parameterType="com.petplatform.dto.UserDto">
+        update
+            user
+        set
+            password = #{password}
+        where
+            userid = #{userId}
+    </update>
+
+    <update id="modifyUser" parameterType="com.petplatform.dto.UserDto">
+        update
+            user
+        set
+            name = #{name},
+            nick_name = #{nickName},
+            birth = #{birth},
+            address = #{address},
+            email = #{email},
+            phone_number = #{phoneNumber}
+        where
+            userid = #{userId}
+    </update>
+
+    <delete id="deleteUser" parameterType="com.petplatform.dto.UserDto">
+        update
+            user
+        set
+            useyn = 'n'
+        where
+            userid = #{userId}
+    </delete>
 
 </mapper>
