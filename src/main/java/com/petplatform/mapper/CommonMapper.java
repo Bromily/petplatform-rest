@@ -12,4 +12,10 @@ public interface CommonMapper {
 
     int doubleCheck(String userId);
 
+    void modifyPassword(UserDto userDto);
+
+    void modifyUser(UserDto userDto);
+
+    void deleteUser(UserDto userDto);
+
 }

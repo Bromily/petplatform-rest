@@ -14,10 +14,16 @@ public class CommonController {
     @PostMapping("/sign_in")
     UserDto signIn(@RequestBody UserDto user) { return service.signIn(user); }
 
-    @PostMapping("/sign_up")
+    @PostMapping("/user")
     String signUp(@RequestBody UserDto user) { return service.signUp(user); }
 
     @GetMapping("/double_check")
     int doubleCheck(@RequestParam("userId") String userId) { return service.doubleCheck(userId); }
+
+    @PutMapping("/user")
+    String modifyUser(@RequestBody UserDto user){ return service.modifyUser(user); }
+
+    @DeleteMapping("/user")
+    String deleteUser(@RequestBody UserDto user){ return service.deleteUser(user); }
 
 }
