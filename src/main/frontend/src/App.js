@@ -1,33 +1,27 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Reset } from "styled-reset"; // 크로스 브라우징을 위해 사용
 
-function App() {
-  const [message, setMessage] = useState([]);
-  useEffect(() => {
-    fetch("/user?id=haksung59")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setMessage(data);
-      });
-  }, []);
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import { GlobalStyle } from "./styles/GlobalStyle";
 
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{message.name}</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        ></a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Reset />
+      <GlobalStyle>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+          </Routes>
+        </div>
+      </GlobalStyle>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
