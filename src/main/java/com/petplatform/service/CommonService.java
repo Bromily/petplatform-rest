@@ -19,6 +19,7 @@ public class CommonService {
             UserDto userInfo = mapper.getUserInfo(userDto);
 
             if (userInfo.getPassword().equals(sha256.encrypt(userDto.getPassword()))) {
+                userInfo.setPassword("");
                 System.out.println("success");
                 return userInfo;
             } else {
@@ -49,7 +50,7 @@ public class CommonService {
 
     public String modifyUser(UserDto userDto){
         try {
-            if(userDto.getPassword()!=null){
+            if(!userDto.getPassword().equals("")){
                 SHA256 sha256 = new SHA256();
                 userDto.setPassword(sha256.encrypt(userDto.getPassword()));
 
@@ -66,10 +67,8 @@ public class CommonService {
     }
 
     public String deleteUser(UserDto userDto){
-
         try {
             mapper.deleteUser(userDto);
-
             return "success";
         }catch (Exception e){
             return "fail";

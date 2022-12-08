@@ -6,6 +6,7 @@
         select
             userid,
             password,
+            nick_name as nickName,
             name,
             birth,
             address,
