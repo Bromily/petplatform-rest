@@ -11,13 +11,13 @@ public class CommonController {
     @Autowired
     public CommonService service;
 
-    @PostMapping("/sign_in")
+    @PostMapping("/signin")
     UserDto signIn(@RequestBody UserDto user) { return service.signIn(user); }
 
     @PostMapping("/user")
     String signUp(@RequestBody UserDto user) { return service.signUp(user); }
 
-    @GetMapping("/double_check")
+    @GetMapping("/doublecheck")
     int doubleCheck(@RequestParam("userId") String userId) { return service.doubleCheck(userId); }
 
     @PutMapping("/user")
