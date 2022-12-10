@@ -24,10 +24,11 @@ public class CommonService {
                 userInfo.setPassword("");
                 response = new ResponseDto(userInfo, null);
             } else {
-                response.setBody("fail : check password!");
+                response.setBody(null);
             }
         }catch (Exception e){
-            response.setBody("fail : " + e.getMessage());
+            response.setBody(null);
+            response.getErrors().add(e.getMessage());
         }
 
         return response;
