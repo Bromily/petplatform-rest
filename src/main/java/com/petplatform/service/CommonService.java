@@ -24,7 +24,7 @@ public class CommonService {
                 userInfo.setPassword("");
                 response = new ResponseDto(userInfo, null);
             } else {
-                response.setBody(null);
+                response.setBody("ID 또는 비밀번호를 확인해 주세요.");
             }
         }catch (Exception e){
             response.setBody(null);
