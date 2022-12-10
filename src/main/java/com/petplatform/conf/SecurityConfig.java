@@ -1,5 +1,6 @@
 package com.petplatform.conf;
 
+import com.petplatform.auth.AuthenticationEntryPointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
