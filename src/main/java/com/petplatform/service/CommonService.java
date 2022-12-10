@@ -1,6 +1,7 @@
 package com.petplatform.service;
 
 import com.petplatform.common.SHA256;
+import com.petplatform.dto.ResponseDto;
 import com.petplatform.dto.UserDto;
 import com.petplatform.mapper.CommonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,24 +13,24 @@ public class CommonService {
     @Autowired
     public CommonMapper mapper;
 
-    public UserDto signIn(UserDto userDto) {
+    public ResponseDto signIn(UserDto userDto) {
         SHA256 sha256 = new SHA256();
+        ResponseDto response = new ResponseDto();
 
         try {
             UserDto userInfo = mapper.getUserInfo(userDto);
 
             if (userInfo.getPassword().equals(sha256.encrypt(userDto.getPassword()))) {
                 userInfo.setPassword("");
-                System.out.println("success");
-                return userInfo;
+                response = new ResponseDto(userInfo, null);
             } else {
-                System.out.println("fail : check password!");
-                return null;
+                response.setBody("fail : check password!");
             }
         }catch (Exception e){
-            System.out.println("fail");
-            return null;
+            response.setBody("fail : " + e.getMessage());
         }
+
+        return response;
 
     }
 

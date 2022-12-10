@@ -1,5 +1,6 @@
 package com.petplatform.controller;
 
+import com.petplatform.dto.ResponseDto;
 import com.petplatform.dto.UserDto;
 import com.petplatform.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ public class CommonController {
     public CommonService service;
 
     @PostMapping("/signin")
-    UserDto signIn(@RequestBody UserDto user) { return service.signIn(user); }
+    ResponseDto signIn(@RequestBody UserDto user) { return service.signIn(user); }
 
     @PostMapping("/user")
     String signUp(@RequestBody UserDto user) { return service.signUp(user); }

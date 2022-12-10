@@ -1,5 +1,6 @@
 package com.petplatform.dto;
 
+import com.petplatform.common.SHA256;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
