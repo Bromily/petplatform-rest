@@ -18,6 +18,8 @@ public class CommonService {
         try {
             UserDto userInfo = mapper.getUserInfo(userDto);
 
+            System.out.println("hi");
+
             if (userInfo.getPassword().equals(sha256.encrypt(userDto.getPassword()))) {
                 userInfo.setPassword("");
                 System.out.println("success");
