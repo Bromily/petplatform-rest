@@ -28,7 +28,7 @@ const Login = () => {
     }
 
     axios
-      .post("/signin", {
+      .post("/api/signin", {
         userId: userId,
         password: password,
       })
