@@ -39,17 +39,6 @@ public class ResponseDto {
 
     private Object body;
 
-    public void ResponseIncorrectHospitalCd(Object body){
-        this.status = "NOT OK";
-        this.errors.add("check hospitalCd");
-        this.message = "병원 코드를 확인하세요.";
-//        if(body instanceof ResponseUpdateReturn) {
-//            ((ResponseUpdateReturn)body).setReturnCd("0001");
-//            ((ResponseUpdateReturn)body).setReturnMsg(this.message);
-//        }
-        this.body = body;
-    }
-
     public ResponseDto(Object request, Object e){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.timestamp = sdf.format(new Date());
