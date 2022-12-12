@@ -12,19 +12,19 @@ public class CommonController {
     @Autowired
     public CommonService service;
 
-    @PostMapping("/signin")
+    @PostMapping("/api/signin")
     ResponseDto signIn(@RequestBody UserDto user) { return service.signIn(user); }
 
-    @PostMapping("/user")
+    @PostMapping("/api/user")
     String signUp(@RequestBody UserDto user) { return service.signUp(user); }
 
-    @GetMapping("/doublecheck")
+    @GetMapping("/api/doublecheck")
     int doubleCheck(@RequestParam("userId") String userId) { return service.doubleCheck(userId); }
 
-    @PutMapping("/user")
+    @PutMapping("/api/user")
     String modifyUser(@RequestBody UserDto user){ return service.modifyUser(user); }
 
-    @DeleteMapping("/user")
+    @DeleteMapping("/api/user")
     String deleteUser(@RequestBody UserDto user){ return service.deleteUser(user); }
 
 }
