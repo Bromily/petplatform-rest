@@ -23,7 +23,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
@@ -41,7 +40,7 @@ sourceSets {
 }
 
 processResources {
-    dependsOn "copyReactBuildFiles"
+    dependsOn "buildReact"
 }
 
 task buildReact(type: Exec) {
@@ -69,11 +68,11 @@ task installReact(type: Exec) {
     }
 }
 
-task copyReactBuildFiles(type: Copy) {
-    dependsOn "buildReact"
-    from "$webappDir/build"
-    into "$projectDir/src/main/resources/templates"
-}
+//task copyReactBuildFiles(type: Copy) {
+//    dependsOn "buildReact"
+//    from "$webappDir/build"
+//    into "$projectDir/src/main/resources/templates"
+//}
 
 tasks.named('test') {
     useJUnitPlatform()
