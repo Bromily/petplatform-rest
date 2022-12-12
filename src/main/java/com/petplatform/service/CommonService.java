@@ -21,7 +21,7 @@ public class CommonService {
             UserDto userInfo = mapper.getUserInfo(userDto);
 
             if (userInfo.getPassword().equals(sha256.encrypt(userDto.getPassword()))) {
-                userInfo.setPassword("");
+                System.out.println("success");
                 response = new ResponseDto(userInfo, null);
             } else {
                 response.setBody("ID 또는 비밀번호를 확인해 주세요.");
