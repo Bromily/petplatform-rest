@@ -16,10 +16,10 @@ public class CommonController {
     ResponseDto signIn(@RequestBody UserDto user) { return service.signIn(user); }
 
     @PostMapping("/api/user")
-    String signUp(@RequestBody UserDto user) { return service.signUp(user); }
+    ResponseDto signUp(@RequestBody UserDto user) { return service.signUp(user); }
 
     @GetMapping("/api/doublecheck")
-    int doubleCheck(@RequestParam("userId") String userId) { return service.doubleCheck(userId); }
+    ResponseDto doubleCheck(@RequestParam("userId") String userId) { return service.doubleCheck(userId); }
 
     @PutMapping("/api/user")
     String modifyUser(@RequestBody UserDto user){ return service.modifyUser(user); }

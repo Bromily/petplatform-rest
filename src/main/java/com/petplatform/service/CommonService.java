@@ -21,7 +21,6 @@ public class CommonService {
             UserDto userInfo = mapper.getUserInfo(userDto);
 
             if (userInfo.getPassword().equals(sha256.encrypt(userDto.getPassword()))) {
-                System.out.println("success");
                 response = new ResponseDto(userInfo, null);
             } else {
                 response.setBody("ID 또는 비밀번호를 확인해 주세요.");
@@ -35,19 +34,30 @@ public class CommonService {
 
     }
 
-    public String signUp(UserDto userDto){
+    public ResponseDto signUp(UserDto userDto){
+        ResponseDto response = new ResponseDto();
         try {
             SHA256 sha256 = new SHA256();
             userDto.setPassword(sha256.encrypt(userDto.getPassword()));
             mapper.signUp(userDto);
-            return "가입되었습니다. 로그인 후 이용해 주세요.";
+            response.setBody("가입되었습니다. 로그인 후 이용해 주세요.");
+
+            return response;
         }catch (Exception e){
-            return "다시 시도해 주세요.";
+            response.setBody("다시 이용해주세요.");
+            return response;
         }
     }
 
-    public int doubleCheck(String userId){
-        return mapper.doubleCheck(userId);
+    public ResponseDto doubleCheck(String userId){
+        ResponseDto response = new ResponseDto();
+        if(mapper.doubleCheck(userId)<1){
+            response.setBody("사용가능한 ID입니다.");
+        }else {
+            response.setBody("이미 사용하고 있는 아이디가 있습니다.");
+        }
+
+        return response;
     }
 
     public String modifyUser(UserDto userDto){
