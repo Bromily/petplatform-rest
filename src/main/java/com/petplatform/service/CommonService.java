@@ -1,38 +1,20 @@
 package com.petplatform.service;
 
 import com.petplatform.common.SHA256;
+import com.petplatform.controller.TokenController;
 import com.petplatform.dto.ResponseDto;
 import com.petplatform.dto.UserDto;
 import com.petplatform.mapper.CommonMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class CommonService {
 
     @Autowired
     public CommonMapper mapper;
-
-    public ResponseDto signIn(UserDto userDto) {
-        SHA256 sha256 = new SHA256();
-        ResponseDto response = new ResponseDto();
-
-        try {
-            UserDto userInfo = mapper.getUserInfo(userDto);
-
-            if (userInfo.getPassword().equals(sha256.encrypt(userDto.getPassword()))) {
-                response = new ResponseDto(userInfo, null);
-            } else {
-                response.setBody("ID 또는 비밀번호를 확인해 주세요.");
-            }
-        }catch (Exception e){
-            response.setBody(null);
-            response.getErrors().add(e.getMessage());
-        }
-
-        return response;
-
-    }
 
     public ResponseDto signUp(UserDto userDto){
         ResponseDto response = new ResponseDto();

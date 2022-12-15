@@ -1,8 +1,11 @@
 package com.petplatform.dto;
 
-import com.petplatform.common.SHA256;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Collection;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -18,5 +21,8 @@ public class UserDto {
     private String phoneNumber;
     private String userType;
     private String useYn;
+
+    private String token;
+    Collection<? extends GrantedAuthority> authorities;
 
 }

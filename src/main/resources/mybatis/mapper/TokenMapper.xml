@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.petplatform.mapper.TokenMapper">
+
+    <select id="getUserById" resultType="com.petplatform.dto.UserDto" parameterType="com.petplatform.dto.UserDto">
+        select
+            userid,
+            password,
+            nick_name as nickName,
+            name,
+            birth,
+            address,
+            email,
+            phone_number as phoneNumber,
+            user_type as userType,
+            useyn
+        from
+            user
+        where
+            userid=#{userId} and
+            useyn = 'y'
+    </select>
+
+    <select id="getUserInfo" resultType="com.petplatform.dto.UserDto" parameterType="java.lang.String">
+        select
+            userid,
+            password,
+            nick_name as nickName,
+            name,
+            birth,
+            address,
+            email,
+            phone_number as phoneNumber,
+            user_type as userType,
+            useyn
+        from
+            user
+        where
+            userid=#{userId} and
+            useyn = 'y'
+    </select>
+
+    <select id="getRefreshToken" resultType="com.petplatform.dto.RefreshTokenDto" parameterType="java.lang.String">
+        select
+            token_index as admRefreshTokenIdx,
+            userid as admIdx,
+            refresh_token as refreshToken
+        from
+            refresh_token
+        where
+            userid = #{userId}
+    </select>
+
+    <insert id="insertRefreshToken" parameterType="com.petplatform.dto.RefreshTokenDto">
+        insert into
+            refresh_token
+                (token_index, userid, refresh_token)
+        values
+            (#{admRefreshTokenIdx}, #{admIdx}, #{refreshToken})
+    </insert>
+
+    <update id="updateRefreshToken" parameterType="com.petplatform.dto.RefreshTokenDto">
+        update
+            refresh_token
+        set
+            refresh_token = #{refreshToken}
+        where
+            userid = #{admIdx}
+    </update>
+
+</mapper>

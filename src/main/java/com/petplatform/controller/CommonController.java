@@ -3,17 +3,16 @@ package com.petplatform.controller;
 import com.petplatform.dto.ResponseDto;
 import com.petplatform.dto.UserDto;
 import com.petplatform.service.CommonService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 public class CommonController {
 
     @Autowired
     public CommonService service;
-
-    @PostMapping("/api/signin")
-    ResponseDto signIn(@RequestBody UserDto user) { return service.signIn(user); }
 
     @PostMapping("/api/user")
     ResponseDto signUp(@RequestBody UserDto user) { return service.signUp(user); }
