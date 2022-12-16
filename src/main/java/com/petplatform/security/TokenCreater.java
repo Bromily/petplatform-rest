@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
@@ -25,7 +26,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
+@Component
 @RequiredArgsConstructor
 public class TokenCreater {
 
