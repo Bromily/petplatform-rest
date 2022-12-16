@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -38,9 +37,10 @@ public class SecurityConfig {
                     .authenticationEntryPoint(authenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-//                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//                    .antMatchers("/api/").permitAll()
-                    .antMatchers("/api/doublecheck").hasRole("ADMIN")
+                    .antMatchers("/api/user/**").permitAll()
+                    .antMatchers("/api/emp/**").hasAnyRole("EMP", "ADMIN", "DEV")
+                    .antMatchers("/api/admin/**").hasAnyRole("ADMIN", "DEV")
+                    .antMatchers("/api/dev/**").hasRole("DEV")
                 .and()
                 .addFilterBefore(securityAuthenticationFilter(),
                         UsernamePasswordAuthenticationFilter.class);

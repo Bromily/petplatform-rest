@@ -2,6 +2,25 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.petplatform.mapper.CommonMapper">
 
+    <select id="getUserInfo" resultType="com.petplatform.dto.UserDto" parameterType="java.lang.String">
+        select
+            userid,
+            password,
+            nick_name as nickName,
+            name,
+            birth,
+            address,
+            email,
+            phone_number as phoneNumber,
+            user_type as userType,
+            useyn
+        from
+            user
+        where
+            userid=#{userId} and
+            useyn = 'y'
+    </select>
+
     <insert id="signUp" parameterType="com.petplatform.dto.UserDto">
         insert into
             user
@@ -10,6 +29,14 @@
         values
             (#{userId}, #{password}, #{nickName}, #{name}, #{birth},
              #{address}, #{email}, #{phoneNumber}, #{userType})
+    </insert>
+
+    <insert id="addToken" parameterType="java.lang.String">
+        insert into
+            refresh_token
+            (token_index, userid)
+        values
+            (get_seq('token_seq'), #{userId})
     </insert>
 
     <select id="doubleCheck" parameterType="java.lang.String" resultType="java.lang.Integer">

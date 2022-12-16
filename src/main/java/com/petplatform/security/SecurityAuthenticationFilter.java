@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -22,11 +21,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 public class SecurityAuthenticationFilter extends OncePerRequestFilter {
 
@@ -44,6 +39,10 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         // jwt local storage 사용 시 해당 코드를 사용하여 header에서 토큰을 받아오도록 함
         // final String token = request.getHeader("Authorization");
+        if(request.getMethod().equals("POST") && request.getRequestURI().equals("/api/user")){
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         // jwt cookie 사용 시 해당 코드를 사용하여 쿠키에서 토큰을 받아오도록 함
         String token = Arrays.stream(request.getCookies())
@@ -54,24 +53,19 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
         String adminId = null;
         String jwtToken = null;
 
-        // Bearer token인 경우 JWT 토큰 유효성 검사 진행
-//        if (token != null && token.startsWith("Bearer ")) {
-            try {
-                adminId = jwtTokenProvider.getUsernameFromToken(token);
-            } catch (SignatureException e) {
-                log.error("Invalid JWT signature: {}", e.getMessage());
-            } catch (MalformedJwtException e) {
-                log.error("Invalid JWT token: {}", e.getMessage());
-            } catch (ExpiredJwtException e) {
-                log.error("JWT token is expired: {}", e.getMessage());
-            } catch (UnsupportedJwtException e) {
-                log.error("JWT token is unsupported: {}", e.getMessage());
-            } catch (IllegalArgumentException e) {
-                log.error("JWT claims string is empty: {}", e.getMessage());
-            }
-//        } else {
-//            logger.warn("JWT Token does not begin with Bearer String");
-//        }
+        try {
+            adminId = jwtTokenProvider.getUsernameFromToken(token);
+        } catch (SignatureException e) {
+            log.error("Invalid JWT signature: {}", e.getMessage());
+        } catch (MalformedJwtException e) {
+            log.error("Invalid JWT token: {}", e.getMessage());
+        } catch (ExpiredJwtException e) {
+            log.error("JWT token is expired: {}", e.getMessage());
+        } catch (UnsupportedJwtException e) {
+            log.error("JWT token is unsupported: {}", e.getMessage());
+        } catch (IllegalArgumentException e) {
+            log.error("JWT claims string is empty: {}", e.getMessage());
+        }
 
         // token 검증이 되고 인증 정보가 존재하지 않는 경우 spring security 인증 정보 저장
         if(adminId != null && SecurityContextHolder.getContext().getAuthentication() == null) {

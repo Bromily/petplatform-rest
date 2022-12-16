@@ -42,8 +42,8 @@
 
     <select id="getRefreshToken" resultType="com.petplatform.dto.RefreshTokenDto" parameterType="java.lang.String">
         select
-            token_index as admRefreshTokenIdx,
-            userid as admIdx,
+            token_index as tokenIndex,
+            userid as userId,
             refresh_token as refreshToken
         from
             refresh_token
@@ -51,21 +51,20 @@
             userid = #{userId}
     </select>
 
-    <insert id="insertRefreshToken" parameterType="com.petplatform.dto.RefreshTokenDto">
-        insert into
-            refresh_token
-                (token_index, userid, refresh_token)
-        values
-            (#{admRefreshTokenIdx}, #{admIdx}, #{refreshToken})
-    </insert>
-
     <update id="updateRefreshToken" parameterType="com.petplatform.dto.RefreshTokenDto">
         update
             refresh_token
         set
             refresh_token = #{refreshToken}
         where
-            userid = #{admIdx}
+            userid = #{userId}
     </update>
+
+    <delete id="deleteRefreshToken" parameterType="java.lang.String">
+        delete from
+                   refresh_token
+        where
+            refresh_token = #{refreshToken}
+    </delete>
 
 </mapper>
