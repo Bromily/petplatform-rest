@@ -23,6 +23,6 @@ public class UserDto {
     private String useYn;
 
     private String token;
-    Collection<? extends GrantedAuthority> authorities;
+    private Collection<? extends GrantedAuthority> authorities;
 
 }
