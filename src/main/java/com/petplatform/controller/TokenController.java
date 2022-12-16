@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class TokenController {
 
     @Autowired
-    TokenCreater tokenCreater;
+    private TokenCreater tokenCreater;
 
     // JWT 토큰 재발급
     @PostMapping("/tokenRefresh")

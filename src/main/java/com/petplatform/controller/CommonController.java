@@ -20,14 +20,12 @@ public class CommonController {
     @PostMapping("/api/signin")
     ResponseDto signIn(@RequestBody UserDto user,
                        HttpServletRequest request,
-                       HttpServletResponse response) {
-        return service.signIn(user, request, response);
-    }
+                       HttpServletResponse response) { return service.signIn(user, request, response); }
 
     @PostMapping("/api/user")
     ResponseDto signUp(@RequestBody UserDto user) { return service.signUp(user); }
 
-    @GetMapping("/api/doublecheck")
+    @GetMapping("/api/all/doublecheck")
     ResponseDto doubleCheck(@RequestParam("userId") String userId) { return service.doubleCheck(userId); }
 
     @PutMapping("/api/user")
