@@ -50,20 +50,4 @@ public class TokenController {
         return service.tokenRefresh(user, servletRequest, servletResponse);
     }
 
-//    @GetMapping("/rjawmd")
-//    public Boolean rjawmd() {
-//
-//    }
-
-//    @Data
-//    class JwtRequest {
-//        private String email;
-//        private String password;
-//    }
-//
-//    @Data
-//    @AllArgsConstructor
-//    class JwtResponse {
-//        private String token;
-//    }
 }

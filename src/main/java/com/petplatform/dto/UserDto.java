@@ -1,5 +1,6 @@
 package com.petplatform.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
+@Schema
 public class UserDto {
 
     private String userId;

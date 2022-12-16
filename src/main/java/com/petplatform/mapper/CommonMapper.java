@@ -8,6 +8,8 @@ public interface CommonMapper {
 
     void signUp(UserDto userDto);
 
+    void addToken(String userId);
+
     int doubleCheck(String userId);
 
     void modifyPassword(UserDto userDto);

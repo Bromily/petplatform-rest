@@ -22,6 +22,7 @@ public class CommonService {
             SHA256 sha256 = new SHA256();
             userDto.setPassword(sha256.encrypt(userDto.getPassword()));
             mapper.signUp(userDto);
+            mapper.addToken(userDto.getUserId());
             response.setBody("가입되었습니다. 로그인 후 이용해 주세요.");
 
             return response;

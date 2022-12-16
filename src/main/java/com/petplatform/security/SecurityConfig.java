@@ -38,9 +38,10 @@ public class SecurityConfig {
                     .authenticationEntryPoint(authenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-//                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//                    .antMatchers("/api/").permitAll()
-                    .antMatchers("/api/doublecheck").hasRole("ADMIN")
+                    .antMatchers("/api/user/**").permitAll()
+                    .antMatchers("/api/emp/**").hasAnyRole("EMP", "ADMIN", "DEV")
+                    .antMatchers("/api/admin/**").hasAnyRole("ADMIN", "DEV")
+                    .antMatchers("/api/dev/**").hasRole("DEV")
                 .and()
                 .addFilterBefore(securityAuthenticationFilter(),
                         UsernamePasswordAuthenticationFilter.class);

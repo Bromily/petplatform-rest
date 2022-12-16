@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.net.URLEncoder;
-import java.time.Duration;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
@@ -135,7 +133,6 @@ public class JwtProvider {
         log.info("[reGenerateRefreshToken] refreshToken 재발급 요청");
         // 관리자 정보 조회
         UserDto user = tokenMapper.getUserById(id);
-        // DB에서 정보 조회
 
         // DB에서 refreshToken 정보 조회
         RefreshTokenDto rDTO = tokenMapper.getRefreshToken(id);

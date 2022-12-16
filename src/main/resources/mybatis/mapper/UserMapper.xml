@@ -12,6 +12,14 @@
              #{address}, #{email}, #{phoneNumber}, #{userType})
     </insert>
 
+    <insert id="addToken" parameterType="java.lang.String">
+        insert into
+            refresh_token
+            (token_index, userid)
+        values
+            (get_seq('token_seq'), #{userId})
+    </insert>
+
     <select id="doubleCheck" parameterType="java.lang.String" resultType="java.lang.Integer">
         select
             count(*) as result
