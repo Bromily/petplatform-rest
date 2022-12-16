@@ -53,19 +53,19 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
         String adminId = null;
         String jwtToken = null;
 
-            try {
-                adminId = jwtTokenProvider.getUsernameFromToken(token);
-            } catch (SignatureException e) {
-                log.error("Invalid JWT signature: {}", e.getMessage());
-            } catch (MalformedJwtException e) {
-                log.error("Invalid JWT token: {}", e.getMessage());
-            } catch (ExpiredJwtException e) {
-                log.error("JWT token is expired: {}", e.getMessage());
-            } catch (UnsupportedJwtException e) {
-                log.error("JWT token is unsupported: {}", e.getMessage());
-            } catch (IllegalArgumentException e) {
-                log.error("JWT claims string is empty: {}", e.getMessage());
-            }
+        try {
+            adminId = jwtTokenProvider.getUsernameFromToken(token);
+        } catch (SignatureException e) {
+            log.error("Invalid JWT signature: {}", e.getMessage());
+        } catch (MalformedJwtException e) {
+            log.error("Invalid JWT token: {}", e.getMessage());
+        } catch (ExpiredJwtException e) {
+            log.error("JWT token is expired: {}", e.getMessage());
+        } catch (UnsupportedJwtException e) {
+            log.error("JWT token is unsupported: {}", e.getMessage());
+        } catch (IllegalArgumentException e) {
+            log.error("JWT claims string is empty: {}", e.getMessage());
+        }
 
         // token 검증이 되고 인증 정보가 존재하지 않는 경우 spring security 인증 정보 저장
         if(adminId != null && SecurityContextHolder.getContext().getAuthentication() == null) {

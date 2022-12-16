@@ -7,12 +7,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface TokenMapper {
 
-    UserDto getUserInfo(UserDto userDto);
-
     UserDto getUserById(String userId);
     RefreshTokenDto getRefreshToken(String userId);
     void updateRefreshToken(RefreshTokenDto tokenDto);
 
-    void insertRefreshToken(String userId);
+    void deleteRefreshToken(String refreshToken);
 
 }

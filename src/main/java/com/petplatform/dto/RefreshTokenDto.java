@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class RefreshTokenDto {
-    private String admRefreshTokenIdx;
-    private String admIdx;
+    private String tokenIndex;
+    private String userId;
     private String refreshToken;
 }

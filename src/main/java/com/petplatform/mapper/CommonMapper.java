@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CommonMapper {
 
+    UserDto getUserInfo(UserDto userDto);
     void signUp(UserDto userDto);
 
     void addToken(String userId);
