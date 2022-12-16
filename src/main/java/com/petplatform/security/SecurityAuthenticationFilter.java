@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -22,6 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SecurityAuthenticationFilter extends OncePerRequestFilter {
 
@@ -71,6 +76,7 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
         // token 검증이 되고 인증 정보가 존재하지 않는 경우 spring security 인증 정보 저장
         if(adminId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDto userDto = tokenMapper.getUserById(adminId);
+            userDto.setAuthorities(Arrays.asList(new SimpleGrantedAuthority(userDto.getUserType())));
             // DB에서 관련 정보 조회
             jwtToken = tokenMapper.getRefreshToken(adminId).getRefreshToken();
 

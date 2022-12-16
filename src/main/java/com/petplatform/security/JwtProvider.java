@@ -43,7 +43,6 @@ public class JwtProvider {
 
     // 모든 token에 대한 사용자 속성정보 조회
     private Claims getAllClaimsFromToken(String token) {
-        log.info(token);
         return Jwts.parser().setSigningKey(Base64.getEncoder().encodeToString(secretKey.getBytes())).parseClaimsJws(token).getBody();
     }
 
