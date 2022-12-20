@@ -39,10 +39,16 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         // jwt local storage 사용 시 해당 코드를 사용하여 header에서 토큰을 받아오도록 함
         // final String token = request.getHeader("Authorization");
-        if(request.getMethod().equals("POST") && request.getRequestURI().equals("/api/user")){
+        String sUrl = request.getRequestURI();
+
+        if(sUrl.startsWith("/api/all")){
+            filterChain.doFilter(request, response);
+            return;
+        }else if(request.getMethod().equals("POST") && (request.getRequestURI().equals("/api/user"))){
             filterChain.doFilter(request, response);
             return;
         }
+
 
         // jwt cookie 사용 시 해당 코드를 사용하여 쿠키에서 토큰을 받아오도록 함
         String token = Arrays.stream(request.getCookies())

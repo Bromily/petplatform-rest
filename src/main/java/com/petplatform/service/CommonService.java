@@ -62,10 +62,10 @@ public class CommonService {
 
     public ResponseDto doubleCheck(String userId){
         ResponseDto response = new ResponseDto();
-        if(mapper.doubleCheck(userId)<1){
-            response.setBody("사용가능한 ID입니다.");
-        }else {
-            response.setBody("이미 사용하고 있는 아이디가 있습니다.");
+        try {
+            response.setBody(mapper.doubleCheck(userId));
+        }catch (Exception e){
+            response.setBody(9999);
         }
 
         return response;
