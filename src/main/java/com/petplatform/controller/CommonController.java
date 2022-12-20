@@ -17,7 +17,7 @@ public class CommonController {
     @Autowired
     public CommonService service;
 
-    @PostMapping("/api/signin")
+    @PostMapping("/api/all/signin")
     ResponseDto signIn(@RequestBody UserDto user,
                        HttpServletRequest request,
                        HttpServletResponse response) { return service.signIn(user, request, response); }

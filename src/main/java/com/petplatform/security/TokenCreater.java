@@ -23,6 +23,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -136,5 +137,14 @@ public class TokenCreater {
             log.error("access token 발급 중 문제가 발생했습니다.");
         }
     }
+
+//    public UserDto checkToken(HttpServletRequest request, HttpServletResponse response){
+//        String token = Arrays.stream(request.getCookies())
+//                .filter(c -> c.getName().equals("petPlatformToken"))
+//                .findFirst() .map(Cookie::getValue)
+//                .orElse(null);
+//
+//        jwtTokenUtil.getClaimFromToken()
+//    }
 
 }

@@ -24,12 +24,9 @@ public class ResponseDto {
 
     private String status;
 
-
     private List errors = new ArrayList();
 
-
     private String message;
-
 
     private String timestamp;
 
