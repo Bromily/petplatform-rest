@@ -4,6 +4,7 @@
 
     <select id="getContentInfo" resultType="com.petplatform.dto.BoardDto" parameterType="java.lang.String">
         select
+            num,
             title,
             content,
             writer
